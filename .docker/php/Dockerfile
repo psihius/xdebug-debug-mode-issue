@@ -1,9 +1,11 @@
-FROM php:8.3-cli as php
+FROM php:8.2-fpm as php
 
-RUN apt-get install -y strace
+ARG XDEBUG
+
+RUN apt-get update && apt-get install -y strace
 
 RUN \
-    pecl install xdebug \
+    pecl install xdebug-${XDEBUG} \
     && docker-php-ext-enable xdebug
 
 # Install composer

@@ -1,11 +1,19 @@
 version: '3.8'
 
 services:
-  php:
+  php-3.3:
     build:
+      args:
+        XDEBUG: 3.3.1
       context: .
       dockerfile: ./.docker/php/Dockerfile
     volumes:
       - .:/var/www/html
-    extra_hosts:
-      - "host.docker.internal:host-gateway"
+  php-3.2:
+    build:
+      args:
+        XDEBUG: 3.2.2
+      context: .
+      dockerfile: ./.docker/php/Dockerfile
+    volumes:
+      - .:/var/www/html
